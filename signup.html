@@ -10,6 +10,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- <script src="fill.js"></script> -->
@@ -24,8 +26,36 @@
       color: red;
       margin-left: 25px;
     }
+    #email-error1 {
+      color: red;
+      margin-left: 25px;
+    }
+    #email-error2 {
+      color: red;
+      margin-left: 25px;
+    }
 
     #password-error {
+      color: red;
+      margin-left: 25px;
+    }
+    #password-error1 {
+      color: red;
+      margin-left: 25px;
+    }
+    #password-error2 {
+      color: red;
+      margin-left: 25px;
+    }
+    #password-error3 {
+      color: red;
+      margin-left: 25px;
+    }
+    #password-error4 {
+      color: red;
+      margin-left: 25px;
+    }
+    #password-error5{
       color: red;
       margin-left: 25px;
     }
@@ -36,69 +66,78 @@
     </style>
 
     <script>
-      function func1() {
+      function formValidation() {
         var name = document.getElementById('name').value;
-        var name1 = document.getElementById('email').value;
+        var email = document.getElementById('email').value;
 
-        var number = document.getElementById('password').value;
+        var pass = document.getElementById('password').value;
 
         if (name == "") {
           document.getElementById("name-error").innerHTML = "Please enter your name.";
           //name.focus();
-          return;
+          return false;
         }
 
-        else if (name1 == "") {
+
+        if (email == "") {
           document.getElementById("email-error").innerHTML = "email address is required.";
           // email.focus();
-          return;
+          return false;
         }
 
-        else if ( name1.indexOf("@", 0) < 0) {
-          document.getElementById("email-error").innerHTML = "you email address it invalid.";
+        if ( email.indexOf("@", 0) < 0) {
+          document.getElementById("email-error1").innerHTML = "your email address it invalid.";
           // email.focus();
-          return;
+          return false;
         }
 
-        else if (name1.indexOf(".", 0) < 0) {
-          document.getElementById("email-error").innerHTML = "you email address it invalid.";
+        if (email.indexOf(".", 0) < 0) {
+          document.getElementById("email-error2").innerHTML = "your email address it invalid.";
           // email.focus();
-          return;
+          return false;
         }
-        else if (number == "") {
+
+        if (pass == "") {
           document.getElementById("password-error").innerHTML = "Password is required.";
           // password.focus();
-          return;
+          return false;
         }
-        else if (number.length < 8) {
-          document.getElementById("password-error").innerHTML = "Password is Atleast 8 characters in the box ";
+        else{}
+        if (pass.length < 8) {
+          document.getElementById("password-error1").innerHTML = "Password is Atleast 8 characters in the box ";
           // password.focus();
-          return;
+          return false;
         }
-        else if (number.search(/[0-9]/) == -1) {
-          document.getElementById("password-error").innerHTML = "Password is Atleast 1 Numeric character in the box";
-          // password.focus();
-          return;
-        }
-        else if (number.search(/[a-z]/) == -1) {
-          document.getElementById("password-error").innerHTML = "Password is Atleast 1 simple character in the box";
-          // password.focus();
-          return;
-        }
-        else if (number.search(/[A-Z]/) == -1) {
-          document.getElementById("password-error").innerHTML = "Password is Atleast 1 capital letter in the box";
-          // password.focus();
-          return;
-        }
-        else if (number.search(/[!\@\#\$\%\^\&\*\(\)\_\+\?\>\<\.]/) == -1) {
-          document.getElementById("password-error").innerHTML = "Password is Atleast 1 special symbol in the box";
-          // password.focus();
-          return;
-        }
-        else{
-          document.getElementById("success").innerHTML =name + ", you are signup successfully";
-        console.log(name);
 
+        if (pass.search(/[0-9]/) == -1) {
+          document.getElementById("password-error2").innerHTML = "Password is Atleast 1 Numeric character in the box";
+          // password.focus();
+          return false;
+        }
+
+        if (pass.search(/[a-z]/) == -1) {
+          document.getElementById("password-error3").innerHTML = "Password is Atleast 1 simple character in the box";
+          // password.focus();
+          return false;
+        }
+
+        if (pass.search(/[A-Z]/) == -1) {
+          document.getElementById("password-error4").innerHTML = "Password is Atleast 1 capital letter in the box";
+          // password.focus();
+          return false;
+        }
+
+        if (pass.search(/[!\@\#\$\%\^\&\*\(\)\_\+\?\>\<\.]/) == -1) {
+          document.getElementById("password-error5").innerHTML = "Password is Atleast 1 special symbol in the box";
+          // password.focus();
+          return false;
+        }
+
+        else{
+        //   document.getElementById("success").innerHTML =name + ", you are signup successfully";
+        // console.log(name);
+        alert(name + ", you are signup successfully");
+         return;
       }
     }
 
@@ -108,7 +147,7 @@
 
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand" href="Index.html"> Show<b>Tracker</b></a>
+    <a class="navbar-brand" href="index.html"> Show<b>Tracker</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -142,7 +181,7 @@
 
 
 <p id="success"></p>
-      <form id="RegForm" action="" method="post" onsubmit="return formValidation()">
+      <form id="registration" action="" method="post" onsubmit="return formValidation()">
         <div class="form-group input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -151,6 +190,7 @@
 
         </div>
            <p id="name-error"></p>
+
         <!-- form-group// -->
         <div class="form-group input-group">
           <div class="input-group-prepend">
@@ -159,26 +199,35 @@
           <input name="email" id="email" class="form-control" placeholder="Email address" type="email">
 
         </div>
-          <p id="email-error"></p><!-- form-group end.// -->
+          <p id="email-error"></p>
+          <p id="email-error1"></p>
+          <p id="email-error2"></p>
+          <!-- form-group end.// -->
         <div class="form-group input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-key"></i> </span>
           </div>
-          <input id="password" name="email" class="form-control" placeholder="Enter password" type="password">
+          <input id="password" name="password" class="form-control" placeholder="Enter password" type="password">
 
         </div>
          <p id="password-error"></p>
+         <p id="password-error1"></p>
+         <p id="password-error2"></p>
+         <p id="password-error3"></p>
+         <p id="password-error4"></p>
+         <p id="password-error5"></p>
         <!-- form-group// -->
         <p class="text-center" style="color:#000; font-size:13px">By clicking on signup you are agree to <a href="">Terms & Conditons </a>and <a href="">Privacy Policy </a> </p>
         <div class="form-group">
-          <button type="submit" id="mybtn" onclick="func1()" class="btn btn-primary btn-blockc signloginbtn"> Sign up </button>
+          <button type="submit" id="mybtn" class="btn btn-primary btn-blockc signloginbtn"> Sign up </button>
         </div> <!-- form-group// -->
         <p style="font-size:14px; color:#828282">Already Have an Account?<a style="color:#000" href="login.html"> Login Now</a></p>
         <div id="msg">
           <pre></pre>
 
       </form>
-      
+
+
 </body>
 
 </html>
